@@ -1,16 +1,15 @@
 {
   "version": 2,
-  "name": "plot-loan-planner",
   "builds": [
     {
       "src": "index.html",
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -32,10 +31,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "index.html": {
-      "includeFiles": "**"
-    }
-  }
+  ]
 }
