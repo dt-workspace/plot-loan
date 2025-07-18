@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --primary-color: #2563eb;
+        --secondary-color: #10b981;
+        --accent-color: #f59e0b;
+        --danger-color: #ef4444;
+        --background: #f8fafc;
+        --surface: #ffffff;
+        --text-primary: #1e293b;
+        --text-secondary: #64748b;
+        --border: #e2e8f0;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family:
+            -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: var(--background);
+        color: var(--text-primary);
+        line-height: 1.6;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2;
+    }
+
+    .btn-primary {
+        @apply bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800;
+    }
+
+    .btn-secondary {
+        @apply bg-secondary-600 text-white hover:bg-secondary-700 active:bg-secondary-800;
+    }
+
+    .btn-accent {
+        @apply bg-accent-600 text-white hover:bg-accent-700 active:bg-accent-800;
+    }
+
+    .btn-danger {
+        @apply bg-danger-600 text-white hover:bg-danger-700 active:bg-danger-800;
+    }
+
+    .btn-outline {
+        @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 active:bg-gray-100;
+    }
+
+    .card {
+        @apply bg-white rounded-xl shadow-custom p-6 border border-gray-100;
+    }
+
+    .input-field {
+        @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors;
+    }
+
+    .metric-card {
+        @apply bg-white rounded-lg p-4 shadow-custom border border-gray-100;
+    }
+
+    .metric-label {
+        @apply text-sm font-medium text-gray-600 mb-1;
+    }
+
+    .metric-value {
+        @apply text-2xl font-bold text-gray-900;
+    }
+
+    .slider-container {
+        @apply relative mb-4;
+    }
+
+    .slider {
+        @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+    }
+
+    .slider::-webkit-slider-thumb {
+        @apply appearance-none w-5 h-5 bg-primary-600 rounded-full cursor-pointer shadow-md;
+    }
+
+    .slider::-moz-range-thumb {
+        @apply w-5 h-5 bg-primary-600 rounded-full cursor-pointer border-0 shadow-md;
+    }
+
+    .slider-value {
+        @apply absolute right-0 -top-8 bg-primary-600 text-white px-2 py-1 rounded text-sm font-semibold;
+    }
+
+    .nav-tab {
+        @apply flex-1 px-4 py-3 text-center cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 font-medium;
+    }
+
+    .nav-tab.active {
+        @apply bg-primary-600 text-white;
+    }
+
+    .nav-tab:not(.active) {
+        @apply text-gray-600 hover:text-gray-800 hover:bg-gray-50;
+    }
+
+    .tab-content {
+        @apply hidden animate-fade-in;
+    }
+
+    .tab-content.active {
+        @apply block;
+    }
+
+    .control-panel {
+        @apply bg-white rounded-xl p-6 shadow-custom border border-gray-100;
+    }
+
+    .control-panel h3 {
+        @apply text-xl font-semibold text-primary-600 mb-4 flex items-center gap-2;
+    }
+
+    .input-group {
+        @apply mb-4;
+    }
+
+    .input-group label {
+        @apply block mb-2 font-medium text-gray-700;
+    }
+
+    .dashboard-grid {
+        @apply grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6;
+    }
+
+    .grid-2 {
+        @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+    }
+
+    .metric-row {
+        @apply flex justify-between items-center py-2 border-b border-gray-100 last:border-b-0;
+    }
+
+    .hamburger-menu {
+        @apply hidden lg:hidden cursor-pointer p-2 rounded-lg hover:bg-gray-100 transition-colors;
+    }
+
+    .hamburger-menu.show {
+        @apply block;
+    }
+
+    .mobile-nav-overlay {
+        @apply fixed inset-0 bg-black bg-opacity-50 z-40 hidden;
+    }
+
+    .mobile-nav-overlay.active {
+        @apply block;
+    }
+
+    .mobile-nav-menu {
+        @apply fixed top-0 right-0 w-80 h-full bg-white shadow-2xl z-50 p-6 transform translate-x-full transition-transform duration-300;
+    }
+
+    .mobile-nav-menu.active {
+        @apply translate-x-0;
+    }
+
+    .mobile-nav-item {
+        @apply block py-3 px-4 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors duration-200 flex items-center gap-3;
+    }
+
+    .mobile-nav-item.active {
+        @apply text-primary-600 bg-primary-50 font-semibold;
+    }
+
+    .mobile-current-tab {
+        @apply lg:hidden bg-primary-100 text-primary-700 px-3 py-1 rounded-lg text-sm font-medium flex items-center gap-2;
+    }
+}
+
+@layer utilities {
+    .text-gradient {
+        @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    }
+
+    .shadow-custom {
+        box-shadow: var(--shadow);
+    }
+
+    .shadow-custom-lg {
+        box-shadow: var(--shadow-lg);
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Chart.js canvas styling */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.chart-container canvas {
+    max-height: 300px !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        @apply grid-cols-1;
+    }
+
+    .grid-2 {
+        @apply grid-cols-1;
+    }
+
+    .nav-tabs {
+        @apply hidden;
+    }
+
+    .hamburger-menu {
+        @apply block;
+    }
+
+    .container {
+        @apply px-4;
+    }
+
+    .metric-value {
+        @apply text-lg;
+    }
+
+    .card {
+        @apply p-4;
+    }
+
+    .control-panel {
+        @apply p-4;
+    }
+}
+
+/* Ant Design customizations */
+.ant-slider {
+    @apply mb-4;
+}
+
+.ant-slider-rail {
+    @apply bg-gray-200 h-2;
+}
+
+.ant-slider-track {
+    @apply bg-primary-600 h-2;
+}
+
+.ant-slider-handle {
+    @apply border-primary-600 shadow-md;
+}
+
+.ant-input {
+    @apply border-gray-300 focus:border-primary-500 focus:shadow-none;
+}
+
+.ant-input:focus {
+    @apply ring-2 ring-primary-500 ring-opacity-50;
+}
+
+.ant-button-primary {
+    @apply bg-primary-600 border-primary-600 hover:bg-primary-700 hover:border-primary-700;
+}
+
+.ant-tabs-tab {
+    @apply text-gray-600 hover:text-primary-600;
+}
+
+.ant-tabs-tab-active {
+    @apply text-primary-600;
+}
+
+.ant-tabs-ink-bar {
+    @apply bg-primary-600;
+}
+
+.ant-card {
+    @apply shadow-custom border-gray-100;
+}
+
+.ant-statistic-content {
+    @apply text-gray-900;
+}
+
+.ant-statistic-title {
+    @apply text-gray-600;
+}

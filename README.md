@@ -1,95 +1,157 @@
-# 📍 Plot Planner - Smart Plot Investment Planning
+# Plot Loan Calculator
 
-A comprehensive web application for planning and managing plot investments with advanced financial calculations and visualizations.
+A comprehensive React application for calculating and analyzing plot and construction loan details with financial impact assessment.
 
 ## Features
 
-### 🏡 Plot Management
-- Add and manage multiple plots with detailed information
-- Track plot prices, locations, and investment timelines
-- Visual plot portfolio overview
+### 🏠 Home Investment Analysis
+- **Plot Configuration**: Configure plot size and price per square foot
+- **Construction Planning**: Optional construction area and cost calculations
+- **Combined Loan Calculation**: Single loan covering both plot and construction costs
+- **Financial Impact Assessment**: FOIR analysis and EMI capacity evaluation
+- **Real-time Calculations**: Interactive sliders for instant loan detail updates
 
-### 💰 Financial Calculations
-- EMI calculator with detailed breakdowns
-- Loan capacity analysis based on salary and FOIR
-- Growth projections and investment scenarios
-- Maximum loan amount calculations
+### 💰 Key Calculations
+- Total project cost (plot + construction)
+- Down payment requirements
+- Monthly EMI calculations
+- Total interest over loan tenure
+- FOIR (Fixed Obligation to Income Ratio) analysis
+- Available EMI capacity assessment
 
-### 📊 Interactive Dashboards
-- Real-time financial charts and graphs
-- Timeline view for investment planning
-- Growth indicators and trend analysis
-- Mobile-responsive design
+### 📊 Financial Metrics
+- Current vs. projected FOIR comparison
+- Risk level assessment (Low/Medium/High)
+- EMI capacity analysis
+- Loan affordability recommendations
+- Construction cost planning
 
-### 📱 Modern UI/UX
-- Clean, professional interface
-- Mobile-first responsive design
-- Interactive charts powered by Chart.js
-- Hamburger menu for mobile navigation
+## Technology Stack
 
-### 🔧 Advanced Features
-- PDF export functionality
-- Print report capabilities
-- Data persistence with localStorage
-- Scenario planning and analysis
-
-## Technologies Used
-
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Charts**: Chart.js
-- **PDF Generation**: jsPDF
-- **Icons**: Font Awesome
-- **Responsive Design**: CSS Grid & Flexbox
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **UI Components**: Custom slider components and metric cards
 
 ## Getting Started
 
-1. Clone this repository
-2. Open `index.html` in your web browser
-3. Start planning your plot investments!
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
 
-## Live Demo
+### Installation
 
-[View Live Demo](https://your-vercel-deployment-url.vercel.app)
+1. Clone the repository
+```bash
+git clone <repository-url>
+cd plot-loan
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+### Building for Production
+
+```bash
+npm run build
+```
 
 ## Usage
 
-### Adding Plots
-1. Navigate to the "Plots" tab
-2. Click "Add New Plot"
-3. Fill in the plot details (price, location, etc.)
-4. View your plot in the portfolio overview
+### Basic Plot Loan Calculation
+1. Configure your plot size and price per square foot
+2. Set your preferred down payment percentage
+3. Adjust interest rate and loan tenure
+4. View calculated EMI and loan details
 
-### Financial Planning
-1. Use the "Calculator" tab for EMI calculations
-2. Check "Timeline" for investment planning
-3. Analyze scenarios in the "Scenarios" tab
+### Including Construction Costs
+1. Enable "Include Construction" checkbox
+2. Set construction area and price per square foot
+3. The system will calculate a combined loan for both plot and construction
+4. Review the total project cost and monthly EMI
 
-### Exporting Reports
-- Click "Export PDF" to download a comprehensive report
-- Use "Print Report" for physical copies
+### Financial Impact Analysis
+- View your current FOIR vs. projected FOIR
+- Check available EMI capacity after the investment
+- Get risk assessment and recommendations
+- Compare before and after investment scenarios
 
-## Browser Support
+## Key Components
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
+- **CurrentHome.tsx**: Main analysis component with loan calculations
+- **MetricCard.tsx**: Reusable metric display components
+- **CustomSlider.tsx**: Interactive input sliders
+- **Store**: Zustand-based state management for user profile and calculations
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── common/          # Reusable UI components
+│   └── tabs/            # Main tab components
+├── store/               # State management
+├── types/               # TypeScript type definitions
+├── utils/               # Utility functions and calculations
+└── assets/              # Static assets
+```
+
+## Configuration
+
+The application uses several configurable parameters:
+
+- **Plot Size**: 500 - 3000 sq ft
+- **Plot Price**: ₹1,000 - ₹5,000 per sq ft
+- **Construction Area**: 800 - 2,500 sq ft
+- **Construction Price**: ₹1,200 - ₹3,000 per sq ft
+- **Down Payment**: 10% - 50%
+- **Interest Rate**: 7% - 12%
+- **Loan Tenure**: 5 - 30 years
+
+## Features in Detail
+
+### Combined Loan Approach
+Unlike traditional calculators that treat plot and construction as separate loans, this application calculates a single combined loan that includes:
+- Plot acquisition cost
+- Construction cost (if applicable)
+- Single EMI for the entire project
+- Unified down payment calculation
+
+### FOIR Analysis
+The application provides comprehensive FOIR (Fixed Obligation to Income Ratio) analysis:
+- Current FOIR calculation
+- Projected FOIR after investment
+- Risk level assessment
+- Recommendations based on financial capacity
+
+### Interactive Configuration
+- Real-time slider controls for all parameters
+- Instant calculation updates
+- Visual feedback for risk levels
+- Comprehensive metric display
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Contact
+## Support
 
-For questions or support, please open an issue in this repository.
-
----
-
-**Built with ❤️ for smart plot investment planning**
+For support, please create an issue in the GitHub repository or contact the development team.
