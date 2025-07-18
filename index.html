@@ -1754,17 +1754,41 @@
 
             // Plot management
             function addPlot() {
+                const size = parseInt(
+                    document.getElementById("newPlotSize").value,
+                );
+                const year = parseInt(
+                    document.getElementById("newPlotYear").value,
+                );
+                const rate = parseInt(
+                    document.getElementById("newPlotRate").value,
+                );
+
+                // Validate inputs
+                if (isNaN(size) || size < 500 || size > 5000) {
+                    alert(
+                        "Please enter a valid plot size between 500 and 5000 sq ft",
+                    );
+                    return;
+                }
+
+                if (isNaN(year) || year < new Date().getFullYear()) {
+                    alert("Please enter a valid future year");
+                    return;
+                }
+
+                if (isNaN(rate) || rate < 500 || rate > 3000) {
+                    alert(
+                        "Please enter a valid rate between ₹500 and ₹3000 per sq ft",
+                    );
+                    return;
+                }
+
                 const plot = {
                     id: Date.now(),
-                    size: parseInt(
-                        document.getElementById("newPlotSize").value,
-                    ),
-                    year: parseInt(
-                        document.getElementById("newPlotYear").value,
-                    ),
-                    rate: parseInt(
-                        document.getElementById("newPlotRate").value,
-                    ),
+                    size: size,
+                    year: year,
+                    rate: rate,
                     loanAmount: 0,
                     emi: 0,
                 };
@@ -1775,12 +1799,14 @@
                 plots.push(plot);
                 renderPlots();
                 saveData();
+                updateAllCalculations();
             }
 
             function removePlot(id) {
                 plots = plots.filter((plot) => plot.id !== id);
                 renderPlots();
                 saveData();
+                updateAllCalculations();
             }
 
             function renderPlots() {
@@ -1977,6 +2003,14 @@
                             ?.textContent.replace(/[^0-9]/g, ""),
                     ) || 0;
 
+                // Debug logging
+                console.log("Timeline Update Debug:");
+                console.log("- Current plots:", plots);
+                console.log("- Duration:", duration);
+                console.log("- Current year:", currentYear);
+                console.log("- Current salary:", currentSalary);
+                console.log("- Current EMI:", currentEMI);
+
                 // Create timeline data
                 let timelineData = [];
                 let cumulativeEMI = currentEMI;
@@ -1995,6 +2029,9 @@
 
                     if (plotsInYear.length > 0) {
                         cumulativeEMI += yearPlotEMI;
+                        console.log(
+                            `Year ${year}: Found ${plotsInYear.length} plots, EMI: ${yearPlotEMI}, Cumulative EMI: ${cumulativeEMI}`,
+                        );
                     }
 
                     const foir = (cumulativeEMI / forecastedSalary) * 100;
