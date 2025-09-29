@@ -58,10 +58,10 @@ export const CurrentHome: React.FC = () => {
 
   const getRiskLevel = (foir: number) => {
     if (foir <= 30)
-      return { level: "Low", color: "text-green-600", icon: "🟢" };
+      return { level: "Low", color: "text-green-400" };
     if (foir <= 40)
-      return { level: "Medium", color: "text-yellow-600", icon: "🟡" };
-    return { level: "High", color: "text-red-600", icon: "🔴" };
+      return { level: "Medium", color: "text-yellow-400" };
+    return { level: "High", color: "text-red-400" };
   };
 
   const risk = getRiskLevel(newFOIR);
@@ -70,10 +70,10 @@ export const CurrentHome: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          🏠 Home Investment Analysis
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+          Home Investment Analysis
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm md:text-base">
           Calculate loan details and financial impact for your plot
           {includeConstruction ? " and construction" : ""} investment
         </p>
@@ -84,7 +84,7 @@ export const CurrentHome: React.FC = () => {
         {/* Investment Configuration */}
         <div className="control-panel">
           <h3>
-            <span className="text-xl mr-2">⚙️</span>
+            
             Investment Configuration
           </h3>
 
@@ -92,7 +92,7 @@ export const CurrentHome: React.FC = () => {
             {/* Plot Configuration */}
             <div className="bg-blue-50 p-4 rounded-lg space-y-4">
               <h4 className="font-semibold text-blue-900 flex items-center gap-2">
-                <span>📐</span>
+                
                 Plot Details
               </h4>
 
@@ -128,7 +128,7 @@ export const CurrentHome: React.FC = () => {
             <div className="bg-green-50 p-4 rounded-lg space-y-4">
               <div className="flex items-center justify-between">
                 <h4 className="font-semibold text-green-900 flex items-center gap-2">
-                  <span>🏗️</span>
+                  
                   Construction Details
                 </h4>
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -179,7 +179,7 @@ export const CurrentHome: React.FC = () => {
             {/* Loan Configuration */}
             <div className="bg-purple-50 p-4 rounded-lg space-y-4">
               <h4 className="font-semibold text-purple-900 flex items-center gap-2">
-                <span>🏦</span>
+                
                 Loan Configuration
               </h4>
 
@@ -227,7 +227,7 @@ export const CurrentHome: React.FC = () => {
         {/* Investment Summary */}
         <div className="space-y-4">
           <h3 className="text-xl font-semibold text-primary-600 flex items-center gap-2">
-            <span>💰</span>
+            
             Investment Summary
           </h3>
 
@@ -241,7 +241,6 @@ export const CurrentHome: React.FC = () => {
                 label="Plot Cost"
                 value={plotCost}
                 compact={true}
-                icon="📐"
                 description={`${plotSize} sq ft @ ₹${plotPricePerSqFt}/sq ft`}
               />
 
@@ -250,7 +249,6 @@ export const CurrentHome: React.FC = () => {
                   label="Construction Cost"
                   value={constructionCost}
                   compact={true}
-                  icon="🏗️"
                   description={`${constructionArea} sq ft @ ₹${constructionPricePerSqFt}/sq ft`}
                 />
               )}
@@ -259,7 +257,6 @@ export const CurrentHome: React.FC = () => {
                 label="Total Project Cost"
                 value={totalProjectCost}
                 compact={true}
-                icon="💰"
                 valueClassName="text-primary-600 font-bold text-lg"
               />
             </MetricGrid>
@@ -275,7 +272,6 @@ export const CurrentHome: React.FC = () => {
                 label="Down Payment"
                 value={downPaymentAmount}
                 compact={true}
-                icon="💸"
                 description={`${downPaymentPercentage}% of total project cost`}
               />
 
@@ -283,7 +279,6 @@ export const CurrentHome: React.FC = () => {
                 label="Loan Amount"
                 value={loanAmount}
                 compact={true}
-                icon="🏦"
                 valueClassName="text-yellow-600 font-bold"
               />
 
@@ -291,7 +286,6 @@ export const CurrentHome: React.FC = () => {
                 label="Monthly EMI"
                 value={loanCalculation.monthlyEMI}
                 compact={true}
-                icon="📅"
                 valueClassName="text-red-600 font-bold text-lg"
                 description={`For ${loanTenure} years @ ${interestRate}%`}
               />
@@ -300,13 +294,12 @@ export const CurrentHome: React.FC = () => {
                 label="Total Interest"
                 value={loanCalculation.totalInterest}
                 compact={true}
-                icon="📈"
                 description={`Over ${loanTenure} years`}
               />
 
               <div className="metric-card">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-lg">🗓️</span>
+                  
                   <span className="metric-label">Loan End Year</span>
                 </div>
                 <div className="metric-value">
@@ -356,14 +349,14 @@ export const CurrentHome: React.FC = () => {
       {/* Financial Impact Analysis */}
       <div className="card">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <span>📊</span>
+          
           Financial Impact Analysis
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="metric-card">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-lg">💳</span>
+              
               <span className="metric-label">New FOIR</span>
             </div>
             <div className={`metric-value ${risk.color}`}>
@@ -376,7 +369,7 @@ export const CurrentHome: React.FC = () => {
 
           <div className="metric-card">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-lg">💰</span>
+              
               <span className="metric-label">Available EMI Capacity</span>
             </div>
             <div
@@ -391,7 +384,7 @@ export const CurrentHome: React.FC = () => {
 
           <div className="metric-card">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-lg">{risk.icon}</span>
+              <span className="text-lg"></span>
               <span className="metric-label">Risk Assessment</span>
             </div>
             <div className={`metric-value ${risk.color}`}>
@@ -491,7 +484,7 @@ export const CurrentHome: React.FC = () => {
       {/* Recommendations */}
       <div className="card">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <span>💡</span>
+          
           Recommendations
         </h3>
 
@@ -499,7 +492,7 @@ export const CurrentHome: React.FC = () => {
           {newFOIR > userProfile.maxFOIR && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-red-600">⚠️</span>
+                
                 <span className="font-semibold text-red-900">
                   FOIR Exceeded
                 </span>
@@ -547,7 +540,7 @@ export const CurrentHome: React.FC = () => {
           {includeConstruction && (
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-blue-600">🏗️</span>
+                
                 <span className="font-semibold text-blue-900">
                   Construction Planning
                 </span>
@@ -562,7 +555,7 @@ export const CurrentHome: React.FC = () => {
 
           <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-indigo-600">💰</span>
+              
               <span className="font-semibold text-indigo-900">
                 Investment Summary
               </span>

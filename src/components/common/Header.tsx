@@ -12,42 +12,34 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const getTabDisplay = (tab: string) => {
     switch (tab) {
       case 'dashboard':
-        return { icon: '📊', label: 'Dashboard' };
+        return { label: 'Dashboard' };
       case 'current':
-        return { icon: '🏠', label: 'Current Home' };
-      case 'future':
-        return { icon: '📍', label: 'Future Plots' };
-      case 'timeline':
-        return { icon: '⏰', label: 'Timeline' };
+        return { label: 'Current Home' };
       default:
-        return { icon: '📊', label: 'Dashboard' };
+        return { label: 'Dashboard' };
     }
   };
 
   const currentTab = getTabDisplay(activeTab);
 
   return (
-    <header className={`bg-white shadow-custom border-b border-gray-100 ${className}`}>
-      <div className="container mx-auto px-4">
+    <header className={`bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40 ${className}`}>
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo and Title */}
           <div className="flex items-center space-x-3">
-            <div className="text-2xl lg:text-3xl font-bold text-primary-600">
-              📍
-            </div>
             <div>
               <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
                 Plot Planner
               </h1>
-              <p className="text-sm text-gray-600 hidden lg:block">
-                Smart planning tool for plot investments and financial analysis
+              <p className="text-xs lg:text-sm text-gray-500 hidden md:block">
+                Smart planning tool for plot investments
               </p>
             </div>
           </div>
 
           {/* Mobile Current Tab Indicator */}
           <div className="lg:hidden mobile-current-tab">
-            <span className="text-lg mr-2">{currentTab.icon}</span>
             {currentTab.label}
           </div>
 
@@ -56,26 +48,12 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             <NavButton
               isActive={activeTab === 'dashboard'}
               onClick={() => useAppStore.getState().setActiveTab('dashboard')}
-              icon="📊"
               label="Dashboard"
             />
             <NavButton
               isActive={activeTab === 'current'}
               onClick={() => useAppStore.getState().setActiveTab('current')}
-              icon="🏠"
               label="Current Home"
-            />
-            <NavButton
-              isActive={activeTab === 'future'}
-              onClick={() => useAppStore.getState().setActiveTab('future')}
-              icon="📍"
-              label="Future Plots"
-            />
-            <NavButton
-              isActive={activeTab === 'timeline'}
-              onClick={() => useAppStore.getState().setActiveTab('timeline')}
-              icon="⏰"
-              label="Timeline"
             />
           </nav>
 
@@ -86,9 +64,9 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             aria-label="Toggle mobile menu"
           >
             {isMobileNavOpen ? (
-              <X className="h-6 w-6 text-gray-600" />
+              <X className="h-6 w-6 text-gray-700" />
             ) : (
-              <Menu className="h-6 w-6 text-gray-600" />
+              <Menu className="h-6 w-6 text-gray-700" />
             )}
           </button>
         </div>
@@ -100,17 +78,15 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 interface NavButtonProps {
   isActive: boolean;
   onClick: () => void;
-  icon: string;
   label: string;
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ isActive, onClick, icon, label }) => {
+const NavButton: React.FC<NavButtonProps> = ({ isActive, onClick, label }) => {
   return (
     <button
       onClick={onClick}
       className={`nav-tab ${isActive ? 'active' : ''}`}
     >
-      <span className="text-lg mr-2">{icon}</span>
       {label}
     </button>
   );
