@@ -4,17 +4,26 @@
 
 @layer base {
     :root {
-        --primary-color: #2563eb;
-        --secondary-color: #10b981;
-        --accent-color: #f59e0b;
-        --danger-color: #ef4444;
-        --background: #f8fafc;
+        --primary-color: #1890ff;
+        --primary-light: #40a9ff;
+        --primary-dark: #096dd9;
+        --secondary-color: #52c41a;
+        --accent-color: #722ed1;
+        --success-color: #52c41a;
+        --warning-color: #faad14;
+        --danger-color: #ff4d4f;
+        --info-color: #13c2c2;
+        --background: #f0f2f5;
+        --background-dark: #001529;
         --surface: #ffffff;
-        --text-primary: #1e293b;
-        --text-secondary: #64748b;
-        --border: #e2e8f0;
-        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        --surface-hover: #fafafa;
+        --text-primary: #262626;
+        --text-secondary: #8c8c8c;
+        --text-disabled: #bfbfbf;
+        --border: #d9d9d9;
+        --border-light: #f0f0f0;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
     * {
@@ -25,10 +34,11 @@
 
     body {
         font-family:
-            -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         background: var(--background);
         color: var(--text-primary);
-        line-height: 1.6;
+        line-height: 1.5715;
+        min-height: 100vh;
     }
 
     html {
@@ -62,15 +72,24 @@
     }
 
     .card {
-        @apply bg-white rounded-xl shadow-custom p-6 border border-gray-100;
+        @apply bg-white rounded-lg shadow-custom p-6 border border-gray-200 transition-all duration-300;
+    }
+
+    .card:hover {
+        box-shadow: var(--shadow-lg);
     }
 
     .input-field {
-        @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors;
+        @apply w-full px-3 py-2 bg-white border border-gray-300 rounded text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all;
     }
 
     .metric-card {
-        @apply bg-white rounded-lg p-4 shadow-custom border border-gray-100;
+        @apply bg-white rounded-lg p-5 shadow-custom border border-gray-200 transition-all duration-300;
+    }
+
+    .metric-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
     }
 
     .metric-label {
@@ -102,15 +121,16 @@
     }
 
     .nav-tab {
-        @apply flex-1 px-4 py-3 text-center cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2 font-medium;
+        @apply flex-1 px-4 py-3 text-center cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 font-medium rounded-lg;
     }
 
     .nav-tab.active {
-        @apply bg-primary-600 text-white;
+        @apply bg-blue-600 text-white;
+        box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3);
     }
 
     .nav-tab:not(.active) {
-        @apply text-gray-600 hover:text-gray-800 hover:bg-gray-50;
+        @apply text-gray-700 hover:text-blue-600 hover:bg-blue-50;
     }
 
     .tab-content {
@@ -122,11 +142,11 @@
     }
 
     .control-panel {
-        @apply bg-white rounded-xl p-6 shadow-custom border border-gray-100;
+        @apply bg-white rounded-lg p-6 shadow-custom border border-gray-200;
     }
 
     .control-panel h3 {
-        @apply text-xl font-semibold text-primary-600 mb-4 flex items-center gap-2;
+        @apply text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900;
     }
 
     .input-group {
@@ -138,11 +158,15 @@
     }
 
     .dashboard-grid {
-        @apply grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6;
+        @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 md:gap-6 mb-6;
     }
 
     .grid-2 {
-        @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+        @apply grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6;
+    }
+
+    .grid-3 {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6;
     }
 
     .metric-row {
@@ -167,6 +191,7 @@
 
     .mobile-nav-menu {
         @apply fixed top-0 right-0 w-80 h-full bg-white shadow-2xl z-50 p-6 transform translate-x-full transition-transform duration-300;
+        border-left: 1px solid var(--border);
     }
 
     .mobile-nav-menu.active {
@@ -174,15 +199,19 @@
     }
 
     .mobile-nav-item {
-        @apply block py-3 px-4 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors duration-200 flex items-center gap-3;
+        @apply block py-3 px-4 hover:bg-blue-50 rounded-lg transition-all duration-200 flex items-center gap-3 text-gray-700;
+    }
+
+    .mobile-nav-item:hover {
+        @apply text-blue-600;
     }
 
     .mobile-nav-item.active {
-        @apply text-primary-600 bg-primary-50 font-semibold;
+        @apply font-semibold bg-blue-50 text-blue-600;
     }
 
     .mobile-current-tab {
-        @apply lg:hidden bg-primary-100 text-primary-700 px-3 py-1 rounded-lg text-sm font-medium flex items-center gap-2;
+        @apply lg:hidden px-3 py-1 rounded-lg text-sm font-medium flex items-center gap-2 bg-blue-50 text-blue-600 border border-blue-200;
     }
 }
 
@@ -213,6 +242,34 @@
             transform: translateY(0);
         }
     }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes glow {
+        0%, 100% {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+        }
+    }
+
+    .animate-slide-in {
+        animation: slideIn 0.4s ease-out;
+    }
+
+    .animate-glow {
+        animation: glow 2s ease-in-out infinite;
+    }
 }
 
 /* Custom scrollbar */
@@ -222,17 +279,17 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #f0f0f0;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #bfbfbf;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #8c8c8c;
 }
 
 /* Chart.js canvas styling */
@@ -246,14 +303,18 @@
     max-height: 300px !important;
 }
 
-/* Mobile responsiveness */
-@media (max-width: 768px) {
+/* Mobile and Tablet responsiveness */
+@media (max-width: 640px) {
     .dashboard-grid {
-        @apply grid-cols-1;
+        @apply grid-cols-1 gap-4;
     }
 
     .grid-2 {
-        @apply grid-cols-1;
+        @apply grid-cols-1 gap-4;
+    }
+
+    .grid-3 {
+        @apply grid-cols-1 gap-4;
     }
 
     .nav-tabs {
@@ -269,7 +330,7 @@
     }
 
     .metric-value {
-        @apply text-lg;
+        @apply text-xl;
     }
 
     .card {
@@ -278,6 +339,34 @@
 
     .control-panel {
         @apply p-4;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .dashboard-grid {
+        @apply grid-cols-2 gap-5;
+    }
+
+    .grid-3 {
+        @apply grid-cols-2 gap-5;
+    }
+
+    .container {
+        @apply px-6;
+    }
+
+    .card {
+        @apply p-5;
+    }
+
+    .control-panel {
+        @apply p-5;
+    }
+}
+
+@media (min-width: 1025px) {
+    .container {
+        @apply max-w-7xl mx-auto px-8;
     }
 }
 

@@ -47,37 +47,25 @@ export const Dashboard: React.FC = () => {
   const getRiskColor = (level: string) => {
     switch (level) {
       case "low":
-        return "text-green-600";
+        return "text-green-400";
       case "medium":
-        return "text-yellow-600";
+        return "text-yellow-400";
       case "high":
-        return "text-red-600";
+        return "text-red-400";
       default:
-        return "text-gray-600";
+        return "text-gray-400";
     }
   };
 
-  const getRiskIcon = (level: string) => {
-    switch (level) {
-      case "low":
-        return "🟢";
-      case "medium":
-        return "🟡";
-      case "high":
-        return "🔴";
-      default:
-        return "⚪";
-    }
-  };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 md:space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          📊 Financial Dashboard
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+          Financial Dashboard
         </h2>
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm md:text-base">
           Analyze your financial capacity and plan your plot investments
         </p>
       </div>
@@ -87,7 +75,6 @@ export const Dashboard: React.FC = () => {
         {/* Control Panel */}
         <div className="control-panel">
           <h3>
-            <span className="text-xl mr-2">⚙️</span>
             Financial Parameters
           </h3>
 
@@ -146,8 +133,7 @@ export const Dashboard: React.FC = () => {
 
         {/* Quick Metrics */}
         <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-primary-600 flex items-center gap-2">
-            <span>📈</span>
+          <h3 className="text-lg md:text-xl font-semibold text-gray-900 flex items-center gap-2">
             Quick Metrics
           </h3>
 
@@ -156,18 +142,16 @@ export const Dashboard: React.FC = () => {
               label="Current EMI Capacity"
               value={(userProfile.currentSalary * userProfile.maxFOIR) / 100}
               compact={true}
-              icon="💰"
             />
 
             <CurrencyMetricCard
               label="Available for New Plots"
               value={currentMetrics.availableEMICapacity}
               compact={true}
-              icon="🏗️"
               valueClassName={
                 currentMetrics.availableEMICapacity > 0
-                  ? "text-green-600"
-                  : "text-red-600"
+                  ? "text-green-400"
+                  : "text-red-400"
               }
             />
 
@@ -175,14 +159,10 @@ export const Dashboard: React.FC = () => {
               label="Total Debt Capacity"
               value={currentMetrics.totalDebtCapacity}
               compact={true}
-              icon="🏦"
             />
 
             <div className="metric-card">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-lg">
-                  {getRiskIcon(currentMetrics.riskLevel)}
-                </span>
                 <span className="metric-label">Risk Level</span>
               </div>
               <div
@@ -190,7 +170,7 @@ export const Dashboard: React.FC = () => {
               >
                 {currentMetrics.riskLevel}
               </div>
-              <div className="text-sm text-gray-500 mt-1">
+              <div className="text-sm text-gray-400 mt-1">
                 Current FOIR: {formatPercentage(currentMetrics.currentFOIR)}
               </div>
             </div>
@@ -202,8 +182,7 @@ export const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Salary Growth Chart */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <span>📊</span>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Salary Growth Projection
           </h3>
           <SalaryGrowthChart
@@ -215,8 +194,7 @@ export const Dashboard: React.FC = () => {
 
         {/* FOIR Chart */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <span>🎯</span>
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">
             FOIR Usage
           </h3>
           <FOIRChart
@@ -234,14 +212,13 @@ export const Dashboard: React.FC = () => {
 
       {/* Financial Insights */}
       <div className="card">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <span>💡</span>
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">
           Financial Insights
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="bg-blue-50 p-4 rounded-lg">
             <h4 className="font-semibold text-blue-900 mb-2">
-              💰 Monthly Capacity
+              Monthly Capacity
             </h4>
             <p className="text-sm text-blue-700">
               You can afford{" "}
@@ -252,7 +229,7 @@ export const Dashboard: React.FC = () => {
 
           <div className="bg-green-50 p-4 rounded-lg">
             <h4 className="font-semibold text-green-900 mb-2">
-              📈 Growth Impact
+              Growth Impact
             </h4>
             <p className="text-sm text-green-700">
               With {formatPercentage(userProfile.salaryGrowthRate)} annual
@@ -278,7 +255,7 @@ export const Dashboard: React.FC = () => {
                     : "text-red-900"
               }`}
             >
-              {getRiskIcon(currentMetrics.riskLevel)} Risk Assessment
+              Risk Assessment
             </h4>
             <p
               className={`text-sm ${
@@ -303,7 +280,6 @@ export const Dashboard: React.FC = () => {
       {/* Projected Growth Table */}
       <div className="card">
         <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-          <span>📅</span>
           5-Year Salary Projection
         </h3>
         <div className="overflow-x-auto">

@@ -22,30 +22,6 @@ function App() {
         return <Dashboard />;
       case "current":
         return <CurrentHome />;
-      case "future":
-        return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              🏗️ Future Plots
-            </h2>
-            <p className="text-gray-600">
-              Coming soon! This section will allow you to plan and manage
-              multiple plot investments.
-            </p>
-          </div>
-        );
-      case "timeline":
-        return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              ⏰ Timeline
-            </h2>
-            <p className="text-gray-600">
-              Coming soon! This section will show your investment timeline and
-              milestones.
-            </p>
-          </div>
-        );
       default:
         return <Dashboard />;
     }
@@ -63,7 +39,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <Header />
 
@@ -71,7 +47,7 @@ function App() {
       <MobileNavigation />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 md:px-6 lg:px-8 py-6 md:py-8">
         <div className="tab-content active animate-fade-in">
           {renderActiveTab()}
         </div>
@@ -79,11 +55,10 @@ function App() {
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-12">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-2xl">📍</span>
-              <span className="text-xl font-bold text-primary-600">
+              <span className="text-xl font-bold text-gray-900">
                 Plot Planner
               </span>
             </div>
@@ -91,8 +66,7 @@ function App() {
               Smart planning tool for plot investments and financial analysis
             </p>
             <p className="text-gray-500 text-xs mt-2">
-              © 2024 Plot Planner. Built with React, TypeScript, and Tailwind
-              CSS.
+              © 2024 Plot Planner. Built with React, TypeScript, and Tailwind CSS.
             </p>
           </div>
         </div>
